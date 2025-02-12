@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Display Service</title>
+    <style>
+      .layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+        gap: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+      }
+
+      .data-grid {
+        width: 80%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+      }
+
+      .data-grid th, .data-grid td {
+        border: 1px solid #dddddd;
+        padding: 12px;
+        text-align: left;
+      }
+
+      /* Gray for column headers */
+      .data-grid th {
+        background-color: #f4f4f4;
+      }
+
+      /* Lighter gray color for table contrast */
+      .data-grid tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <div>
+        Total Sum: {{ total_sum }}
+      </div>
+
+      <table class="data-grid">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Value</th>
+            <th>IP Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+          <tr>
+            <td>{{ row.id }}</td>
+            <td>{{ row.value }}</td>
+            <td>{{ row.ip_address }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <button onclick="window.location.href='/'">Back to Home</button>
+    </div>
+  </body>
+</html>
