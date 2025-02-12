@@ -44,8 +44,10 @@ resource "aws_lb" "kd_alb" {
   internal           = false
   ip_address_type    = "ipv4"
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.lb_sg]
-  subnets            = [aws_subnet.kd_public_subnet]
+  security_groups    = [aws_security_group.lb_sg.id]
+  subnets            = aws_subnet.kd_public_subnets[*].id
+
+  depends_on = [aws_instance.adder_service]
 }
 
 resource "aws_lb_listener" "alb_listener" {

@@ -2,12 +2,7 @@ variable "database_password" {
   description = "The password for the database"
   type        = string
   sensitive   = true
-}
-
-variable "whitelisted_ip_address" {
-  description = "IP address to whitelist for the resources"
-  type        = string
-  sensitive   = true
+  default     = "testing123"
 }
 
 variable "region" {
@@ -36,16 +31,16 @@ variable "vpc_cidr" {
   default     = "10.0.0.0/16"
 }
 
-variable "public_subnet_cidr" {
+variable "public_subnet_cidrs" {
   description = "The CIDR blocks for the public subnets"
-  type        = string
-  default     = "10.0.0.0/24"
+  type        = list(string)
+  default     = ["10.0.0.0/24", "10.0.10.0/24"]
 }
 
 variable "private_subnet_cidr" {
   description = "The CIDR blocks for the private subnets"
-  type        = string
-  default     = "10.0.1.0/24"
+  type        = list(string)
+  default     = ["10.0.20.0/24", "10.0.30.0/24"]
 }
 
 variable "ec2_instance_type" {
@@ -53,7 +48,18 @@ variable "ec2_instance_type" {
   type        = string
 }
 
-variable "subnet_az" {
+variable "availability_zones" {
   description = "The availability zone for the subnet"
+  type        = list(string)
+}
+
+variable "allowed_bastion_ips" {
+  description = "The allowed IP addresses for the bastion host"
+  type        = list(string)
+}
+
+variable "ssh_key_path" {
+  description = "The path to the SSH key"
   type        = string
+  default     = "~/.ssh/id_rsa.pub"
 }

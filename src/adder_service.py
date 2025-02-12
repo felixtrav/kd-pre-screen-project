@@ -1,5 +1,4 @@
 import database
-import gunicorn
 from flask import Flask, render_template, request, jsonify
 
 
