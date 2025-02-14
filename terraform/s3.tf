@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "flow_logs" {
   bucket = "kd-vpc-flow-logs"
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_policy" "flow_logs" {
