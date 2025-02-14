@@ -1,11 +1,12 @@
 # Felix Travieso - KD Pre-screen Project
 
-Alright, so hi there, my name is Felix Travieso and I'm a DevOps Engineer with a background in IT and system administration.  
+Alright, so hi there, my name is Felix Travieso and I'm a DevOps Engineer with a background in IT and system administration.
 Although if you are reading this you might probably already have my resume, so that's nothing new.
 
-Thank you for taking the time to consider me for your open DevOps position.
+Thank you for taking the time to consider me to be your DevOps Engineer.
 
-As requested in your specifications, this repository contains my best attempt at completing the project you've outlined, and quite a fun project it's been.  
+As requested in your specifications, this repository contains my best attempt at completing the project you've outlined, and quite a fun project it's been.
+
 That being said, trying to finish this in the roughly 4 days I was given was proving a bit of a challenge, so I admittedly cut a few corners to turn around a product that still checks most boxes.
 
 ## Nitty Gritty
@@ -18,12 +19,12 @@ To dive right into the goodies, the rest of this README is going to be split up 
 
 ### Source Code (Python)
 
-To write the services I decided to go with Python. Partly because it's easy, but mainly because it's just what I'm most familiar with.  
+To write the services I decided to go with Python. Partly because it's easy, but mainly because it's just what I'm most familiar with.
 I could have gone .NET, but that wasn't one of the listed options, and it probably would have just made me take longer if it was.
 
 The code for the application can be found in the `src` folder (adding this for completeness, not because I think you need help finding it) and it was written using Flask, with SQLAlchemy used for my ORM. 
 
-I split the code up into 3 separate files (one for each service). Inside the `docker` folder I have Dockerfiles for running both the display and reset services.  
+I split the code up into 3 separate files (one for each service). Inside the `docker` folder I have Dockerfiles for running both the display and reset services.
 I did **not** include a Dockerfile for the adder service as that's the one I chose to deploy to a VM.
 
 The final layout for the app once all the services are running looks like this:
