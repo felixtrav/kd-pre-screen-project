@@ -1,5 +1,10 @@
+resource "random_id" "id" {
+	  byte_length = 8
+}
+
 resource "aws_s3_bucket" "flow_logs" {
-  bucket = "kd-vpc-flow-logs"
+  # Randomize the bucket name to avoid collisions
+  bucket = "kd-flow-logs-${random_id.id.hex}"
   force_destroy = true
 }
 
