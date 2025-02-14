@@ -5,39 +5,27 @@ resource "aws_lb_target_group" "adder_service" {
   vpc_id   = aws_vpc.kd_vpc.id
 }
 
+resource "aws_lb_target_group" "display_service" {
+  name        = "display-service-tg"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = aws_vpc.kd_vpc.id
+  target_type = "ip"
+}
+
+resource "aws_lb_target_group" "reset_service" {
+  name        = "reset-service-tg"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = aws_vpc.kd_vpc.id
+  target_type = "ip"
+}
+
 resource "aws_lb_target_group_attachment" "adder_service" {
   target_group_arn = aws_lb_target_group.adder_service.arn
   target_id        = aws_instance.adder_service.id
   port             = 80
 }
-
-# resource "aws_lb_target_group" "display_service" {
-#   name     = "display-service-tg"
-#   port     = 80
-#   protocol = "HTTP"
-#   vpc_id   = aws_vpc.kd_vpc.id
-# }
-#
-# resource "aws_lb_target_group" "reset_service" {
-#   name     = "reset-service-tg"
-#   port     = 80
-#   protocol = "HTTP"
-#   vpc_id   = aws_vpc.kd_vpc.id
-# }
-
-
-# resource "aws_lb_target_group_attachment" "display_service" {
-#   target_group_arn = aws_lb_target_group.adder_service.arn
-#   target_id        = aws_instance.adder_service.id
-#   port             = 80
-# }
-#
-# resource "aws_lb_target_group_attachment" "reset_service" {
-#   target_group_arn = aws_lb_target_group.adder_service.arn
-#   target_id        = aws_instance.adder_service.id
-#   port             = 80
-# }
-
 
 resource "aws_lb" "kd_alb" {
   name               = "kd-alb"
@@ -73,6 +61,38 @@ resource "aws_lb_listener_rule" "adder_service_listener_rule" {
   condition {
     path_pattern {
       values = ["/add*"]
+    }
+  }
+}
+
+resource "aws_lb_listener_rule" "display_service_listener_rule" {
+  listener_arn = aws_lb_listener.alb_listener.arn
+  priority     = 110
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.display_service.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/display*"]
+    }
+  }
+}
+
+resource "aws_lb_listener_rule" "reset_service_listener_rule" {
+  listener_arn = aws_lb_listener.alb_listener.arn
+  priority     = 120
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.reset_service.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/reset*"]
     }
   }
 }

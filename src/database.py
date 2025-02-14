@@ -1,5 +1,5 @@
 import os
-import psycopg2  # This shows as not imported but is required when using SQLAlchemy with PostgreSQL
+import psycopg2  # This shows as not imported in the IDE but is required when using SQLAlchemy with PostgreSQL
 from db import Row
 from sqlalchemy import create_engine, Engine, func
 from sqlalchemy.orm import sessionmaker, Session
@@ -34,7 +34,7 @@ def get_sum_of_all_values() -> float:
     if sum_of_all_values is None:
         sum_of_all_values = 0
     else:
-        # Round to the nearest 2 decimal places
+        # Here we round so the number displayed isn't ungodly long
         sum_of_all_values = round(sum_of_all_values, 2)
 
     session.close()
@@ -48,7 +48,9 @@ def get_all_rows() -> list[Row]:
 
 def reset_table() -> None:
     session: Session = SESSION_MAKER()
-    # Delete all rows in the project_table
-    session.query(Row).delete()
+    # Drop and recreate the tables
+    # We could instead just delete all the rows BUT then the auto-incrementing id would not reset
+    Row.metadata.drop_all(ENGINE)
+    Row.metadata.create_all(ENGINE)
     session.commit()
     session.close()

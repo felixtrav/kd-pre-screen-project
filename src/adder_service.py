@@ -15,14 +15,17 @@ def adder_service():
 
 @app.route('/add_number', methods=['POST'])
 def add_number():
+    
     try:
         data = request.get_json()
         value = float(data['number'])
         ip_address = data['ip_address']
+        
         database.add_value_entry(value, ip_address)
         return jsonify({'success': True}), 200
+    
     except (KeyError, ValueError) as e:
         return jsonify({'error': str(e)}), 400
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+if __name__ == "__main__":
+    app.run()
