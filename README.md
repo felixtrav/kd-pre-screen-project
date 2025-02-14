@@ -9,6 +9,23 @@ As requested in your specifications, this repository contains my best attempt at
 
 That being said, trying to finish this in the roughly 4 days I was given was proving a bit of a challenge, so I admittedly cut a few corners to turn around a product that still checks most boxes.
 
+## Quick-start
+
+### Prerequisites
+
+You'll need the AWS CLI and Terraform installed.
+If you're reading this, you probably already have both installed and configured.
+
+### Steps
+
+1. In the `terraform.tfvars` file (super specific name, I know), update the following two values:
+    - `allowed_bastion_ips`: A list of all CIDR blocks that will be allowed SSH access to the Bastion VM
+    - `ssh_key_path`: The path to your SSH key, used to authenticate with the Bastion server
+2. Run the `terraform init` and `terraform apply` commands. You should see it ask you to create 53 resources.
+3. Once the apply command finishes, it will output the URL for the load balancer. Open this URL to begin using the application.
+4. Profit? (this does not apply in this situation)
+
+
 ## Nitty Gritty
 
 To dive right into the goodies, the rest of this README is going to be split up into two sections. 
