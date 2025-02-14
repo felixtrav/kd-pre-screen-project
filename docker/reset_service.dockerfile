@@ -1,5 +1,8 @@
 FROM python:3.12-slim
 
+LABEL org.opencontainers.image.source="https://github.com/felixtrav/kd-pre-screen-project"
+LABEL org.opencontainers.image.authors="Felix Travieso"
+
 WORKDIR /app
 
 COPY ./src/requirements.txt /app
