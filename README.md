@@ -53,7 +53,7 @@ The final layout for the app once all the services are running looks like this:
 
 There are a few other endpoints that serve as a backend to receive button presses from the UI and so forth but those aren't important for this explanation.
 
-I'll include some screenshots in a section further down of what the app looks like if you don't want to run it yourself.
+I'll include some [screenshots](#screenshots) in a section further down of what the app looks like if you don't want to run it yourself.
 
 ### Terraform
 
@@ -123,3 +123,24 @@ Below I'm going to go systematically through the requirements listed in the proj
 
 - Denied traffic logging to object storage service
   - For this I setup a VPC flow log to store logs for all denied traffic, pretty straightforward
+
+## Screenshots
+
+I almost forgot to include this, but below are some screenshots of the application when it's up and running.
+
+### Homepage
+![Homepage](.assets/homepage.png)
+
+### Adder Service
+![Adder Service - Blank Database](.assets/adder_service_blank_db.png)
+![Adder Service - Data](.assets/adder_service_data.png)
+
+### Display Service
+
+NOTE: I can assure you that the application does, in fact, record the correct IP, I just didn't want to dox myself on a public repo.
+ 
+![Display Service](.assets/display_service.png)
+
+### Reset Service
+
+![Reset Service](.assets/reset_service.png)
